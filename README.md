@@ -7,6 +7,6 @@ I like MBTI for its utility in categorising personality. I needed a nice easy wa
 The script is written using the actual conversion logic, and is tested with the "lookup table" approach.
 
 ## Usage 
-./main.py --mbti XXXX  
+`./main.py --mbti XXXX`
 
 XXXX is the mbti type for e.g. INTJ, ESFP etc 
