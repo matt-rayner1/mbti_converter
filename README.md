@@ -5,3 +5,8 @@ Each Myers Briggs Type Indicator (MBTI) has its own set of cognitive functions, 
 I like MBTI for its utility in categorising personality. I needed a nice easy way to look up a given type's stack to help me understand more at a glance. 
 
 The script is written using the actual conversion logic, and is tested with the "lookup table" approach.
+
+## Usage 
+./main.py --mbti XXXX  
+
+XXXX is the mbti type for e.g. INTJ, ESFP etc 
