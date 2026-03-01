@@ -51,7 +51,6 @@ def main(parser):
         print(fn + ": " + shadow_fn_descriptions[fn])
     print("-------------------------")
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(

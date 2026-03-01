@@ -1,8 +1,5 @@
 from consts.helpers import opposite, CognitiveFunction
 
-# NOTE: I bashed my head against this conversion for so fucking long I cant even understand why it works any more.
-# I'm glad that it does though.
-
 # in: mbti letters (list) e.g. ["X", "X", "X", "X"]
 # out: cognitive functions (list) e.g. ["XX", "XX", "XX", "XX"]
 # use shadow = True to find shadow functions
@@ -39,30 +36,22 @@ def convert_mbti_to_cognitive_fns(mbti_letter_list: list[str], calculate_shadow_
     # Information type: S/N 
     # Decision type: T/F
     # Worldview type: P/J
-    if attention_type == "E":
-        if worldview_type == "J":
-            cognitive_fn_dict["dominant"].type = decision_type
-            cognitive_fn_dict["auxiliary"].type = information_type
-            cognitive_fn_dict["tertiary"].type = opposite[information_type]
-            cognitive_fn_dict["inferior"].type = opposite[decision_type]
-        if worldview_type == "P":
-            cognitive_fn_dict["dominant"].type = information_type
-            cognitive_fn_dict["auxiliary"].type = decision_type
-            cognitive_fn_dict["tertiary"].type = opposite[decision_type]
-            cognitive_fn_dict["inferior"].type = opposite[information_type]
+    dominant_is_judging = (attention_type == "E") == (worldview_type == "J")
 
-    if attention_type == "I":
-        if worldview_type == "J":
-            cognitive_fn_dict["dominant"].type = information_type
-            cognitive_fn_dict["auxiliary"].type = decision_type
-            cognitive_fn_dict["tertiary"].type = opposite[decision_type]
-            cognitive_fn_dict["inferior"].type = opposite[information_type]
+    if dominant_is_judging:
+        dominant_letter = decision_type
+        auxiliary_letter = information_type
+    else:
+        dominant_letter = information_type
+        auxiliary_letter = decision_type
 
-        if worldview_type == "P":
-            cognitive_fn_dict["dominant"].type = decision_type
-            cognitive_fn_dict["auxiliary"].type = information_type
-            cognitive_fn_dict["tertiary"].type = opposite[information_type]
-            cognitive_fn_dict["inferior"].type = opposite[decision_type]
+    tertiary_letter = opposite[auxiliary_letter]
+    inferior_letter = opposite[dominant_letter]
+
+    cognitive_fn_dict["dominant"].type = dominant_letter
+    cognitive_fn_dict["auxiliary"].type = auxiliary_letter
+    cognitive_fn_dict["tertiary"].type = tertiary_letter
+    cognitive_fn_dict["inferior"].type = inferior_letter
 
     return [str(fn) for fn in cognitive_fn_dict.values()]
 
